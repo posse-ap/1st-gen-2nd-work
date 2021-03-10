@@ -59,13 +59,17 @@ function mysql_to_arry($dbh,$sql){
 $dbh = connect_mysql("db","date_data","root","root_pass_shuto");
 $dbh2 = connect_mysql("db","name_data","root","root_pass_shuto");
 
-$sql = "INSERT INTO date_data (date_id, date_) VALUES (4, '1999-4-10')";
+$sql = "INSERT INTO date_data (date_id, date_) VALUES (4, '1999-4-12')";
 
 $result_flag = $dbh->query($sql);
 
 if (!$result_flag) {
     print_r( $dbh->errorinfo());
-}
+} 
+
+// TODO:日付データをとってくる
+// TODO:formをきれいにする
+// TODO:例外処理
 
 ?>
 
@@ -203,9 +207,8 @@ if (!$result_flag) {
                 <div class="success_img" id="success">
                     <img src="img/success.png">
                 </div>
-
+                <form action="" method="POST">
                 <div class="modalContents" id="modal_contents">
-                    <form action="mail.php" method="post" id="modal_form">
                         <div class="modal_top">
                             <div class="modal_top_left">
 <!-- TODO:タイトルタグを使っては？？(~titleにしとくかも？？) -->
@@ -267,11 +270,9 @@ if (!$result_flag) {
                                 </div>
 
                                 <div class="modal_top_right_tweetBox">
-                                    <form action="#" method="post">
                                         twitter用コメント
                                         <br>
                                         <textarea id="txtbox" name="comment" class="tweetBox"></textarea>
-                                    </form>
                                     <input id="modal_check12" value="12" type="checkbox" name="checkbox01"><label
                                         for="modal_check12" class="checkbox01">&emsp;&emsp;Twitterに自動投稿する</label>
                                 </div>
@@ -282,11 +283,12 @@ if (!$result_flag) {
 
                         <div class="modal_bottom">
                             <div class="modal_button">
-                                <button id="send" class="btn">記録・投稿</button>
+                                <button id="send" type="submit" class="btn">記録・投稿</button>
+                                <input type="submit" >
                             </div>
                         </div>
-                    </form>
                 </div>
+                </form>
 
                 <div id="closeModal" class="closeModal">
                     ×
@@ -317,6 +319,12 @@ if (!$result_flag) {
     </script>
 </body>
 
+<form action="" method="post" >
+<p> 名前: <input type="text" name="name" value=""></p>
+<p>年齢: <input type="text" name="age" value=""></p>
+<input type="submit" >
+</form> 
+
 </html>
 
-<!-- tesutodayo -->
+<p><?php echo htmlspecialchars(@$_POST['comment'], ENT_QUOTES, 'UTF-8'); ?>さん。</p>
