@@ -210,8 +210,12 @@ body {
 }
 
 #pieChart_language {
+    
     height: 50%;
     margin: 10px;
+}
+.pieChart_box_legends{
+    display: inline;
 }
 
 .circle {
@@ -223,58 +227,65 @@ body {
     margin-right: 3px;
 }
 
-.js_color {
+.js_color::before {
     background: #1754EF;
 }
 
-.css_color {
+.css_color::before {
     background: #0F71BD;
 }
 
-.php_color {
+.php_color::before {
     background-color: #20BDDE;
 }
 
-.html_color {
+.html_color::before {
     background-color: #3CCEFE;
 }
 
-.laravel_color {
+.laravel_color::before {
     background-color: #B29EF3;
 }
 
-.sql_color {
+.sql_color::before {
     background-color: #6D46EC;
 }
 
-.shell_color {
+.shell_color::before {
     background-color: #4A17EF;
 }
 
-.other_color {
+.other_color::before {
     background-color: #3105C0;
 }
 
-.dotinstall_color {
+.dotinstall_color::before {
     background-color: #1754EF;
 }
 
-.nyobi_color {
+.nyobi_color::before {
     background-color: #0F71BD;
 }
 
-.posse_color {
+.posse_color::before {
     background-color: #20BDDE;
 }
 
-.pieChart_box_legends{
+.pieChart_box_legends >span{
     display: inline-block;
 }
 
-.legend{
-margin-right: 10px;
-margin: 20px 0;
+.legend::before {
+    content: '';                /* 空の要素を作成 */
+    display:  inline-block;     /* インラインブロックにする */
+    height: 10px;               /* 高さ指定 */
+    width: 10px;                /* 幅指定 */
+    border-radius:  50%;        /* 角丸指定 */
+    vertical-align:  middle;    /* 中央揃え */
+    position:  relative;        /* 位置調整 */
+    top: -2px;                  /* 位置調整 */
 }
+
 
 /* --------------------footer --------------*/
 
