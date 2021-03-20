@@ -1,6 +1,6 @@
 // ----------ペースト-----------
 
-
+console.log(DateArray);
 // モーダル
 $(function() {
 
@@ -84,41 +84,42 @@ $(function() {
 
 
 
+// FIXME:ここを消すと一旦はよくなる
 
-//----------------------------------ロード画面----------------------------------------
+// //----------------------------------ロード画面----------------------------------------
 
-$(".btn").on("click", function(){
-    document.getElementById("modal_contents").style.display ="none";
-    $(document).ajaxSend(function() {
-        $("#overlay").fadeIn(500);
-    });
-    $.ajax({
-        type: 'GET',
-        success: function(data){
-            console.log(data);
-        }
-    }).done(function() {
-        setTimeout(function(){
-            $("#overlay").fadeOut(500);
-            document.getElementById("success").style.display ="block";
-        },3000);
-    });
-    return false;
-});
+// $(".btn").on("click", function(){
+//     document.getElementById("modal_contents").style.display ="none";
+//     $(document).ajaxSend(function() {
+//         $("#overlay").fadeIn(500);
+//     });
+//     $.ajax({
+//         type: 'GET',
+//         success: function(data){
+//             console.log(data);
+//         }
+//     }).done(function() {
+//         setTimeout(function(){
+//             $("#overlay").fadeOut(500);
+//             document.getElementById("success").style.display ="block";
+//         },3000);
+//     });
+//     return false;
+// });
 
-//ーーーーーーーーーーーーーーーーツイッターーーーーーーーーーーーーーー
-document.getElementById("send").addEventListener('click', function(event) {
-    event.preventDefault();
-    var left = Math.round(window.screen.width / 2 - 275);
-    var top = (window.screen.height > 420) ? Math.round(window.screen.height / 2 - 210) : 0;
-    if(document.forms.modal_form.modal_check12.checked){
-        window.open(
-            "https://twitter.com/intent/tweet?text=" + encodeURIComponent(document.getElementById("txtbox").value),
-            null,
-            "scrollbars=yes,resizable=yes,toolbar=no,location=yes,width=550,height=420,left=" + left + ",top=" + top);
-    }
+// //ーーーーーーーーーーーーーーーーツイッターーーーーーーーーーーーーーー
+// document.getElementById("send").addEventListener('click', function(event) {
+//     event.preventDefault();
+//     var left = Math.round(window.screen.width / 2 - 275);
+//     var top = (window.screen.height > 420) ? Math.round(window.screen.height / 2 - 210) : 0;
+//     if(document.forms.modal_form.modal_check12.checked){
+//         window.open(
+//             "https://twitter.com/intent/tweet?text=" + encodeURIComponent(document.getElementById("txtbox").value),
+//             null,
+//             "scrollbars=yes,resizable=yes,toolbar=no,location=yes,width=550,height=420,left=" + left + ",top=" + top);
+//     }
     
-});
+// });
 
 
 
@@ -131,27 +132,18 @@ function drawChart() {
     var dataArray = [
         ['day', 'time']
     ];
-    var df = $.Deferred();
 
-    $(function() {
-        $.ajax({
-            url: 'study_time.json',
-            dataType: 'json',
-        }).done(function(data) {
-            console.log("success");
-
-            $(data).each(function() {
-                var data_item = [this.day, this.time];
-                dataArray.push(data_item);
-            });
-            df.resolve();
-        }).fail(function() {
-            console.log("error");
-        });
+    $(DateArray).each(function() {
+        // var data_item = [this.day, this.time];
+        var data_item = [Number(this.day), Number(this.time)];
+        dataArray.push(data_item);
     });
+    // FIXME:31日まで表示されるようにする
+    dataArray.push([32,"NULL"]);
 
-    df.done(function() {
+
         var chartdata = google.visualization.arrayToDataTable(dataArray);
+        console.log(dataArray);
 
         var options = {
             legend: 'none',
@@ -175,7 +167,7 @@ function drawChart() {
         var chart = new google.visualization.ColumnChart(document.getElementById('bargraph'));
 
         chart.draw(chartdata, options);
-    });
+
 }
 
 // --------------こっから円グラフ--------------------------

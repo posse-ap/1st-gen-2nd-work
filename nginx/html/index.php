@@ -1,4 +1,5 @@
 <?php 
+// phpinfo();
 // ーーーーーーーーーーーーーーーーーーurl変更くんーーーーーーーーーーーーーーーーーーーーーー
 function url_param_change($par=Array(),$op=0){
     $url = parse_url($_SERVER["REQUEST_URI"]);
@@ -47,7 +48,7 @@ function connect_mysql($host_name,$db_name,$usr_name,$password){
 
 function mysql_to_arry($dbh,$sql){
     $res = $dbh->query($sql);
-    $ret = $res->fetchAll();
+    $ret = $res->fetchAll(PDO::FETCH_ASSOC);
     return $ret;
 }
 // 使用例
@@ -56,16 +57,39 @@ function mysql_to_arry($dbh,$sql){
 
 // -------------------------------------------------------
 
-$dbh = connect_mysql("db","date_data","root","root_pass_shuto");
-$dbh2 = connect_mysql("db","name_data","root","root_pass_shuto");
+$dbh_name_data = connect_mysql("db","name_data","root","root_pass_shuto");
+$dbh_time_data = connect_mysql("db","time_data","root","root_pass_shuto");
+// $dbh_time_data->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+// $dbh_time_data = connect_mysql("db","time_data","root","root_pass_shuto",$option);
 
-$sql = "INSERT INTO date_data (date_id, date_) VALUES (4, '1999-4-12')";
+$sql_all_time ="SELECT DATE_FORMAT(save_time, '%d') AS 'day', all_study_time AS 'time' 
+                FROM all_time 
+                WHERE DATE_FORMAT(save_time, '%m')=4";
 
-$result_flag = $dbh->query($sql);
+$month_data = mysql_to_arry($dbh_time_data,$sql_all_time);
 
+$sql_contents_time ="SELECT content_id , sum(content_study_time) 
+                FROM contents_time 
+                GROUP BY content_id
+                WHERE DATE_FORMAT(save_time, '%m')=4";
+
+// $contents_data = mysql_to_arry($dbh_time_data,$sql_contents_time);
+
+$contents_data = $dbh_time_data->query($sql_contents_time);
+
+print_r($month_data);
+print_r($contents_data);
+
+
+
+$month_data = json_encode($month_data);
+
+$result_flag = $dbh_time_data->query($sql_all_time);
 if (!$result_flag) {
-    print_r( $dbh->errorinfo());
+    print_r( $dbh_time_data->errorinfo());
 } 
+
+
 
 // TODO:日付データをとってくる
 // TODO:formをきれいにする
@@ -84,6 +108,9 @@ if (!$result_flag) {
     <link rel="stylesheet" href="./style_pc.css">
 </head>
 
+<script  type="text/javascript">
+var DateArray = <?php echo $month_data ?>;
+</script>
 
 <body>
     <!-- FIXME:ロード画面 -->
@@ -163,18 +190,15 @@ if (!$result_flag) {
                     <div id="pieChart_language">
                     </div>
                     <div class="pieChart_box_legends">
-                        <!--TODO:要素をdivで括って、classつけてpadding??  -->
-                        <span></span><span class="circle js_color"></span><span class="legend">JavaScript</span></span>
-                        <span class="circle css_color"></span><span class="legend">CSS</span>
-                        <span class="circle php_color"></span><span class="legend">PHP</span>
-                        <br>
-                        <span class="circle html_color"></span><span class="legend">HTML</span>
-                        <span class="circle laravel_color"></span><span class="legend">Laravel</span>
-                        <span class="circle sql_color"></span><span class="legend">SQL</span>
-                        <br>
-                        <span class="circle shell_color"></span><span class="legend">SHELL</span>
-                        <br>
-                        <span class="circle other_color"></span><span class="legend">情報システム基礎知識</span>
+                        <!--TODO:囲ってあるspanにclassつける  -->
+                        <span><span class="legend js_color">JavaScript</span></span>
+                        <span><span class="legend css_color">CSS</span></span>
+                        <span><span class="legend php_color">PHP</span></span>
+                        <span><span class="legend html_color">HTML</span></span>
+                        <span><span class="legend laravel_color">Laravel</span></span>
+                        <span><span class="legend sql_color">SQL</span></span>                      
+                        <span><span class="legend shell_color">SHELL</span></span>                    
+                        <span><span class="legend other_color">情報システム基礎知識</span></span>
                     </div>
                 </div>
 
@@ -187,11 +211,11 @@ if (!$result_flag) {
                     </div>
                     <div class="pieChart_box_legends">
                         <!-- FIXME:丸と文字で一つの箱にする インラインにしとく -->
-                        <span class="circle dotinstall_color"></span><span class="legend">ドットインストール</span>
-                        <br>
-                        <span class="circle nyobi_color"></span><span class="legend">N予備校</span>
-                        <br>
-                        <span class="circle posse_color"></span><span class="legend">POSSE課題</span>
+                        <span class="legend dotinstall_color">ドットインストール</span>
+                        
+                        <span class="legend nyobi_color">N予備校</span>
+                        
+                        <span class="legend posse_color">POSSE課題</span>
                     </div>
                 </div>
             </div>
@@ -279,12 +303,12 @@ if (!$result_flag) {
                             </div>
 
                         </div>
-
-
                         <div class="modal_bottom">
                             <div class="modal_button">
-                                <button id="send" type="submit" class="btn">記録・投稿</button>
-                                <input type="submit" >
+                                <!-- FIXME:id=sendが悪さをしているよ -->
+                                <!-- <button id="send" type="submit" class="btn">記録・投稿</button> -->
+                                <button type="submit" >記録・投稿</button>
+                                <!-- <input type="submit" > -->
                             </div>
                         </div>
                 </div>
