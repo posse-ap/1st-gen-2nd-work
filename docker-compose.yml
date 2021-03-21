@@ -1,0 +1,10 @@
+version: "3"
+services:
+  nginx:
+   image: nginx:latest
+  
+  php: 
+   image: php:latest
+
+  db: 
+   image: mysql:latest
