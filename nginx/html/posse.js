@@ -170,57 +170,40 @@ function drawChart() {
 
 }
 
+
+function Array_cheker(array,comparing){
+    if(array['id']==comparing){
+        return Number(array['sum']);
+    }
+    return null;
+}
+
 // --------------こっから円グラフ--------------------------
 //コンテンつ
 google.load("visualization", "1", { packages: ["corechart"] });
 google.setOnLoadCallback(drawChart_2);
-
 function drawChart_2() {
-    var df = $.Deferred();
 
-    var sum_1 = 0;
-    var sum_2 = 0;
-    var sum_3 = 0;
+    var sum0 = Array_cheker(ContentsArray,'c_1');
+    console.log('!!!!!!!!!'+sum0);
+    // var sum1;
+    // var sum2;
+    var chartdata_2 = google.visualization.arrayToDataTable([
+        ['day', 'contents'],
+        ['N予備校', Number(ContentsArray[0]['sum'])],
+        ['ドットインストール', Number(ContentsArray[1]['sum'])],
+        ['posse課題', Number(ContentsArray[2]['sum'])]
+    ]);
 
-    $(function() {
-        $.ajax({
-            url: 'study_contents.json',
-            dataType: 'json',
-        }).done(function(data) {
-            console.log("success");
-            $(data).each(function() {
-                sum_1 = sum_1 + this.c_1;
-                sum_2 = sum_2 + this.c_2;
-                sum_3 = sum_3 + this.c_3;
-            });
-
-            df.resolve();
-        }).fail(function() {
-            console.log("error");
-        });
-    });
-
-    df.done(function() {
-        var chartdata_2 = google.visualization.arrayToDataTable([
-            ['day', 'contents'],
-            ['N予備校', sum_1],
-            ['ドットインストール', sum_2],
-            ['posse課題', sum_3]
-        ]);
-        console.log(chartdata_2);
-        var options = {
-            legend: 'none',
-            'chartArea': { top: 0, 'width': '100%', 'height': '100%' },
-            pieHole: 0.5,
-            colors: ['#1754EF', '#0F71BD', '#20BDDE'],
-        };
-        var chart_2 = new google.visualization.PieChart(document.getElementById('pieChart_contents'));
-        chart_2.draw(chartdata_2, options);
-    });
+    var options = {
+        legend: 'none',
+        'chartArea': { top: 0, 'width': '100%', 'height': '100%' },
+        pieHole: 0.5,
+        colors: ['#1754EF', '#0F71BD', '#20BDDE'],
+    };
+    var chart_2 = new google.visualization.PieChart(document.getElementById('pieChart_contents'));
+    chart_2.draw(chartdata_2, options);
 }
-
-
-
 
 //言語
 google.load("visualization", "1", { packages: ["corechart"] });
