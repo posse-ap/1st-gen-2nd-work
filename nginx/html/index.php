@@ -1,5 +1,6 @@
 <?php 
-require('function.php');
+// require('function.php');
+include __DIR__ . '/function.php';
 ?>
 
 <!DOCTYPE html>
