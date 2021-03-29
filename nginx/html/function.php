@@ -47,9 +47,9 @@ try {
     
     
     // ーーーーーーーーーーーーーーーーーーー棒グラフーーーーーーーーーーーーーーーーーーーーー
-    $sql_all_time ="SELECT DATE_FORMAT(save_date, '%d') AS 'day', all_study_time AS 'time' 
+    $sql_all_time ="SELECT DATE_FORMAT(save_date, '%d') AS 'day',  all_study_time AS 'time' 
                 FROM all_time 
-                WHERE DATE_FORMAT(save_date, '%m')=4";
+                WHERE DATE_FORMAT(save_date, '%Y-%m')='1999-04'";
 
 $month_data = $dbh->query($sql_all_time);
 $month_data = $month_data->fetchAll(PDO::FETCH_ASSOC);
@@ -72,6 +72,31 @@ $sql_languages_time ="SELECT language_id AS 'id' , sum(language_study_time) AS '
 $languages_data = $dbh->query($sql_languages_time);
 $languages_data = $languages_data->fetchAll(PDO::FETCH_ASSOC);
 
+// ーーーーーーーーーーーーーーーーーー日別合計ーーーーーーーーーーーーーーーーーーーーーー
+$sql_day_time ="SELECT all_study_time AS 'time'
+                FROM all_time 
+                WHERE save_date = '1999-04-10'";
+
+$day_time_data = $dbh->query($sql_day_time);
+$day_time_data = $day_time_data->fetchAll(PDO::FETCH_ASSOC);
+
+// ーーーーーーーーーーーーーーーーーー月別合計ーーーーーーーーーーーーーーーーーーーーーー
+$sql_month_time ="SELECT  sum(all_study_time) AS 'time'
+                FROM all_time 
+                WHERE DATE_FORMAT(save_date, '%Y-%m')='1999-04'";
+
+$month_time_data = $dbh->query($sql_month_time);
+$month_time_data = $month_time_data->fetchAll(PDO::FETCH_ASSOC);
+
+// ーーーーーーーーーーーーーーーーーー月別合計ーーーーーーーーーーーーーーーーーーーーーー
+$sql_year_time ="SELECT  sum(all_study_time) AS 'time'
+                FROM all_time";
+
+$year_time_data = $dbh->query($sql_year_time);
+$year_time_data = $year_time_data->fetchAll(PDO::FETCH_ASSOC);
+
+
+
 } catch(PDOException $e) {
     print_r("エラーだよ");
     // echo $e->getMessage();
@@ -82,10 +107,11 @@ $languages_data = $languages_data->fetchAll(PDO::FETCH_ASSOC);
     die();
 }
 
-
-print_r($month_data);
-print_r($contents_data);
-print_r($languages_data);
+// print_r($month_data);
+// print_r($day_time_data);
+// print_r($year_time_data);
+// print_r($contents_data);
+// print_r($languages_data);
 
 $month_data = json_encode($month_data);
 $contents_data = json_encode($contents_data);
