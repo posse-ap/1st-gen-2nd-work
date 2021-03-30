@@ -52,7 +52,7 @@ var LanguageArray = <?php echo $languages_data ?>;
                             Today
                         </div>
                         <span class="number">
-                            3
+                        <?php echo $day_time_data[0]['time'] ?>
                         </span>
                         <div class="studyTime_box_hour">
                             hour
@@ -63,7 +63,7 @@ var LanguageArray = <?php echo $languages_data ?>;
                             Month
                         </div>
                         <span class="number">
-                            120
+                        <?php echo $month_time_data[0]['time'] ?>
                         </span>
                         <div class="studyTime_box_hour">
                             hour
@@ -74,7 +74,7 @@ var LanguageArray = <?php echo $languages_data ?>;
                             <div>Total</div>
                         </div>
                         <span class="number">
-                            <div>1348</div>
+                        <?php echo $year_time_data[0]['time'] ?>
                         </span>
                         <div class="studyTime_box_hour">
                             <div>hour</div>
@@ -251,12 +251,12 @@ var LanguageArray = <?php echo $languages_data ?>;
     </script>
 </body>
 
-<form action="" method="post" >
+<!-- <form action="" method="post" >
 <p> 名前: <input type="text" name="name" value=""></p>
 <p>年齢: <input type="text" name="age" value=""></p>
 <input type="submit" >
 </form> 
 
-</html>
+</html>-->
 
-<p><?php echo htmlspecialchars(@$_POST['comment'], ENT_QUOTES, 'UTF-8'); ?>さん。</p>
+<!-- <p><?php echo htmlspecialchars(@$_POST['comment'], ENT_QUOTES, 'UTF-8'); ?>さん。</p>  -->
