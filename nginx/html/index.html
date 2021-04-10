@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ガチで東京の人しか解けない！ #東京の難読地名クイズ</title>
+    <link rel="stylesheet" href="quizy.css">
+    
+    <link href="https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/html5resetcss/html5reset-1.6.css">
+</head>
+
+<header>
+    <div class = "header_left">
+        <h4>kuizy</h4>
+    </div>
+    <div class = "header_right">
+        <a href="/ranking" class="icon">
+            <img src="https://d1khcm40x1j0f.cloudfront.net/static/img/tab/tournament-on.png" alt="ランキング">
+            <span>ランキング</span>
+        </a>
+        
+        <a href="/quiz/prepare" class="icon">
+            <img src="https://d1khcm40x1j0f.cloudfront.net/static/img/tab/create-on.png" alt="クイズ作成">
+            <span>作ってみる</span>
+        </a>
+        
+        
+        <a href="/search" class="icon">
+            <img src="https://d1khcm40x1j0f.cloudfront.net/static/img/tab/search-on.png" alt="検索">
+            <span>検索する</span>
+        </a>
+    </div>
+</header>
+
+<body>
+    
+    
+    
+    <div class="main">
+        <h1>ガチで東京の人しか解けない！ #東京の難読地名クイズ</h1>
+        <!-- ここから1問目 -->
+        <div class="quiz">
+            <h2 class="mondaibunn">1. この地名はなんて読む？</h2>
+            <img src="https://d1khcm40x1j0f.cloudfront.net/quiz/34d20397a2a506fe2c1ee636dc011a07.png">
+            
+            <ul>
+                <li class="choices" id="quiz_1_1" name="choices_1" onclick="check(1,1,2)">たかわ</li>
+                <li class="choices" id="quiz_1_2" name="choices_1" onclick="check(1,2,2)">たかなわ</li>
+                <li class="choices" id="quiz_1_3" name="choices_1" onclick="check(1,3,2)">こうわ</li>
+                <li id="answerbox_1" class="answerbox">
+                    <span id="answertext_1"></span><br>
+                    <span>正解は「たかなわ」です！</span>
+                </li> 
+            </ul>
+        </div>
+        
+        
+        <!-- ここから2問目 -->
+        <div class="quiz">
+            <h2 class="mondaibunn">2. この地名はなんて読む？</h2>
+            <img src="https://d1khcm40x1j0f.cloudfront.net/quiz/512b8146e7661821c45dbb8fefedf731.png">
+            
+            <ul>
+                <li class="choices" id="quiz_2_1" name="choices_2" onclick="check(2,1,3)">かめど</li>
+                <li class="choices" id="quiz_2_2" name="choices_2" onclick="check(2,2,3)">かめと</li>
+                <li class="choices" id="quiz_2_3" name="choices_2" onclick="check(2,3,3)">かめいど</li>
+                <li id="answerbox_2" class="answerbox">
+                    <span id="answertext_2"></span><br>
+                    <span>正解は「かめいど」です！</span>
+                </li> 
+            </ul>
+        </div>
+    </div>
+
+
+
+<!-- <h2>2. この地名はなんて読む？</h2>
+    <img class="quiz-image" src="https://d1khcm40x1j0f.cloudfront.net/quiz/512b8146e7661821c45dbb8fefedf731.png" alt="">
+    <ul>
+        <li><button id="quizy">かめいど</button></li>    
+        <li><button id="quizy">かめど</button></li>       
+        <li><button id="quizy">かめと</button></li>
+    </ul>
+    <h2>3. この地名はなんて読む？</h2>
+    <img class="quiz-image" src="https://d1khcm40x1j0f.cloudfront.net/quiz/ad4f8badd896f1a9b527c530ebf8ac7f.png" alt="">
+    <ul>
+        <li><button id="quizy">おかとまち</button></li>
+        <li><button id="quizy">かゆまち</button></li>
+        <li><button id="quizy">こうじまち</button></li>
+    </ul>
+    
+    <h2>4. この地名はなんて読む？</h2>
+    <img class="quiz-image" src="https://d1khcm40x1j0f.cloudfront.net/quiz/ee645c9f43be1ab3992d121ee9e780fb.png" alt="">
+    <ul>
+        <li><button id="quizy">おなりもん</button></li>
+        <li><button id="quizy">ごせいもん</button></li>
+        <li><button id="quizy">おかどもん</button></li>
+    </ul>
+    
+    
+    <h2>5. この地名はなんて読む？</h2>
+    <img class="quiz-image" src="https://d1khcm40x1j0f.cloudfront.net/quiz/6a235aaa10f0bd3ca57871f76907797b.png" alt="">
+    <ul>
+        <li><button id="quizy">たたりき</button></li>
+        <li><button id="quizy">たたら</button></li>
+        <li><button id="quizy">とどろき</button></li>
+    </ul>
+    
+    <h2>6. この地名はなんて読む？</h2>
+    <img class="quiz-image" src="https://d1khcm40x1j0f.cloudfront.net/quiz/0b6789cf496fb75191edf1e3a6e05039.png" alt="">
+    <ul>
+        <li><button id="quizy">いじい</button></li>
+        <li><button id="quizy">せきこうい</button></li>
+        <li><button id="quizy">しゃくじい</button></li>
+    </ul>
+    <h2>7. この地名はなんて読む？</h2>
+    <img class="quiz-image" src="https://d1khcm40x1j0f.cloudfront.net/quiz/23e698eec548ff20a4f7969ca8823c53.png" alt="">
+    <ul>
+        <li><button id="quizy">ざっしょく</button></li>
+        <li><button id="quizy">ざっしき</button></li>
+        <li><button id="quizy">ぞうしき</button></li>
+    </ul>
+    
+    <h2>8. この地名はなんて読む？</h2>
+    <img class="quiz-image" src="https://d1khcm40x1j0f.cloudfront.net/quiz/50a753d151d35f8602d2c3e2790ea6e4.png" alt="">
+    <ul>
+        <li><button id="quizy">ごしろちょう</button></li>
+        <li><button id="quizy">おかちまち</button></li>
+        <li><button id="quizy">みとちょう</button></li>
+    </ul>
+    <h2>9. この地名はなんて読む？</h2>
+    <img class="quiz-image" src="https://d1khcm40x1j0f.cloudfront.net/words/8cad76c39c43e2b651041c6d812ea26e.png" alt="">
+    <ul>
+        <li><button id="quizy">ろっこつ</button></li>
+        <li><button id="quizy">ししぼね</button></li>
+        <li><button id="quizy">しこね</button></li>
+    </ul>
+    
+    <h2>10. この地名はなんて読む？</h2>
+    <img class="quiz-image" src="https://d1khcm40x1j0f.cloudfront.net/words/34508ddb0789ee73471b9f17977e7c9c.png" alt="">
+    <ul>
+        <li><button id="quizy">こばく</button></li>
+        <li><button id="quizy">こぐれ</button></li>
+        <li><button id="quizy">こしゃく</button></li>
+    </ul> -->
+    <!-- </div>   -->
+    <script src="quizy.js"></script>
+</body>
+</html>

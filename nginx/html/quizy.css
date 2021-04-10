@@ -1,0 +1,119 @@
+header{
+    display: flex;
+    justify-content: space-between;
+}
+.header_left h4{
+    font-size: 30px;
+    color: #25C7D8;
+    margin: 0;
+}
+
+.header_right a {
+    height: 40px;
+    display: inline-block;
+    padding: 4px 10px 0 0;
+    top: 0;
+    margin-left: 6px;
+    line-height: 30px;
+    text-decoration: none;
+    color: #000;
+    vertical-align: top;
+}
+
+.header_right a img{
+    width: 23px;
+    height: 23px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    display: block;
+}
+.header_right a span{
+    font-size: 8px;
+    line-height: 8px;
+    height: 8px;
+    padding-top: 3px;
+    text-align: center;
+    display: block;
+}
+
+.main{
+     width: 500px;
+     margin: 0 25% 0 25%;
+}
+
+h1{
+    font-size: 19px;
+    line-height: 27px;
+    font-weight: 700;
+    margin-bottom: 0;
+    color: #161616;
+}
+
+.quiz-image{
+    margin: 10px 0;
+    margin-top: 10px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+}
+
+.quiz h2{
+    display: inline-block;
+    font-size: 17px;
+    line-height: 20px;
+    font-weight: 600;
+    margin-right: auto;
+    margin-left : auto;
+    background: linear-gradient(transparent 70%, yellow 50%);
+}
+
+.quiz li{
+    display: block;
+    border: 1px solid #ebebeb;
+    padding: 13px;
+    margin: 10px 0;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* 選択肢（回答前） */
+
+.quiz .choices {
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  /* 選択肢（回答後）（正解） */
+  
+  .quiz .answer_valid {
+    background-color: #08b3f0;
+    color: #ffffff;
+  }
+  
+  /* 選択肢（回答後）（不正解） */
+  
+  .quiz .answer_invalid {
+    background-color: #fd6647;
+    color: #ffffff;
+  }
+  
+  /* 問題 答えボックス */
+  
+  .quiz .answerbox {
+    display: none;
+    height: 77px;
+    line-height: 30px;
+  }
+  
+  /* 問題 答えボックス 正解 */
+  
+  .quiz .answerbox_valid {
+    background: linear-gradient(transparent 70%, #08b3f0 0);
+  }
+  
+  /* 問題 答えボックス 不正解 */
+  
+  .quiz .answerbox_invalid {
+    background: linear-gradient(transparent 70%, #fd6647 0);
+  }
